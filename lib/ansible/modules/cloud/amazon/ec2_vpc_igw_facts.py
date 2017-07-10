@@ -66,6 +66,13 @@ EXAMPLES = '''
     profile: production
     internet_gateway_ids: igw-c1231234
   register: igw_facts
+  
+ - name: Gather facts about a specific internet gateway by attachment vpc id using the facts returned from ec2_vpc_net_facts
+   ec2_vpc_igw_facts:
+    region: "{{ region }}"
+    filters:
+      attachment.vpc-id: "{{ vpc['vpcs'][0]['id'] }}"
+   register: igw_facts
 '''
 
 RETURN = '''
